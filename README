@@ -1,0 +1,24 @@
+## Relevance Builder
+
+Written by Jeremy Anderson, copyright 2009.  GPL v3.
+
+## WHY?
+
+complex relevance is REALLY difficult to troubleshoot -- here, you can put together atomic, simple to test relevance statements, and throw them into a terrible directory structure, and get really quite complex statements.   Is it efficient?  not so much -- BUT, it can be broken apart and adjusted, and when something goes wrong, you can generally get things fixed pretty quickly.   Like...minutes -- without getting lost in () () (((((())) AND (((()))) AND NOT (())))) lisp-like hell.
+
+in here goes the linux-based relevance builder.
+
+Clauses are placed in files named clause.NAME
+
+inside the RelPlan file syntax looks like this:
+
+
+( clause.clause1 AND clause.clause2 ) >= clause.clause3
+
+this will assume that there are three files containing working relevance clauses:
+
+clause1 clause2 clause3
+
+Each clausefile must be a text file in which the relevance appears ONLY on the first line.  No subsequent lines will be read.  Comments (lines starting with #) will be ignored.  If, instead, clausefile is a directory name, the file clausefile/RESULT will be read in as the relevance clause.  If the clausefile does not exist, the script will abort.
+
+After the relevance is assembled, using the mkRel.pl command, the output file RESULT is created. -- this can then be run through the qna debugger.
